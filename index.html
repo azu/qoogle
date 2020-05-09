@@ -28,6 +28,20 @@
         .main > * {
             width: 100%;
         }
+
+        .footer {
+            font-family: Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 1em;
+            text-align: center;
+            border-top: 1px solid #eee;
+            background: #fff;
+        }
+
+        .footer p {
+            font-weight: 100;
+        }
     </style>
 </head>
 <body>
@@ -37,6 +51,9 @@
 <main id="js-main" class="main">
     <div class="gcse-search"></div>
 </main>
+<footer class="footer">
+    <p>Source on <a href="https://github.com/azu/qoogle">GitHub</a>.</p>
+</footer>
 <script>
     const onSearchReady = () => {
         return new Promise((resolve) => {
