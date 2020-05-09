@@ -4,12 +4,14 @@ A frontend for quugle.net
 
 ## Usage
 
-- Open:
+1. Open: <https://qoogle.netlify.app>
+2. Search Cooking Recipe
 
 ## Tips
 
 - `q` parameter: default query key
 
+For example, go to search "バナナ": <https://qoogle.netlify.app?q=バナナ>
 
 ## Changelog
 
