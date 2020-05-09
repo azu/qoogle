@@ -6,6 +6,10 @@ A frontend for quugle.net
 
 - Open:
 
+## Tips
+
+- `q` parameter: default query key
+
 
 ## Changelog
 
