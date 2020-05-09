@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Qoogle</title>
+    <style>
+        .header {
+            font-family: Raleway, Helvetica Neue, Helvetica, Arial, sans-serif;
+            max-width: 768px;
+            margin: 0 auto;
+            padding: 1em;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+        }
+
+        .header h1 {
+            font-weight: 100;
+            margin: 0;
+        }
+
+        .main {
+            margin: auto;
+            width: 652px;
+            min-width: 652px
+        }
+
+        .main > * {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+    <h1>Qoogle</h1>
+</header>
+<main id="js-main" class="main">
+    <div class="gcse-search"></div>
+</main>
+<script>
+    const onSearchReady = () => {
+        return new Promise((resolve) => {
+            const main = document.getElementById("js-main");
+            if (main.childElementCount > 0) {
+                resolve();
+                return;
+            }
+            const observer = new MutationObserver((mutations) => {
+                for (const mutation of mutations) {
+                    if (mutation.type === 'childList') {
+                        observer.disconnect()
+                        resolve();
+                    }
+                }
+            });
+            observer.observe(main);
+        });
+    }
+    (async function () {
+        await onSearchReady();
+        const input = document.getElementsByName("search")[0];
+        const url = new URL(location.href);
+        const form = document.querySelector("form.sc-search-box");
+        if (url.searchParams.has("q")) {
+            input.value = url.searchParams.get("q");
+            if (form) {
+                form.submit();
+            }
+        }
+    })();
+</script>
+<script async src="https://cse.google.com/cse.js?cx=001593329906102929035:petu4-wohry"></script>
+</body>
+</html>
