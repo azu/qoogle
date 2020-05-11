@@ -22,6 +22,17 @@
             margin: 0;
         }
 
+        .header-details {
+            padding: 0.5rem;
+            font-weight: 100;
+
+        }
+
+        .header-details ol {
+            text-align: left;
+            padding-left: 2em;
+        }
+
         .main {
             margin: auto;
             width: 768px;
@@ -58,6 +69,17 @@
 <body>
     <header class="header">
         <h1>Qoogle</h1>
+        <details class="header-details">
+            <summary>How to Use?</summary>
+            <p>Quugle.netを使っていろいろな料理サイトからキーワード検索ができます。</p>
+            <ol>
+                <li>材料やレシピ名などを入力する</li>
+                <li>検索する</li>
+            </ol>
+            <p>
+                Tips: <code>?q=検索キーワード</code>もサポートしています。例) <a href="https://qoogle.netlify.app/?q=ひき肉">ひき肉</a>
+            </p>
+        </details>
     </header>
     <main id="js-main" class="main">
         <div class="gcse-search"></div>
