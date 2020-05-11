@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Qoogle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
     <style>
         .header {
@@ -22,11 +24,18 @@
 
         .main {
             margin: auto;
-            width: 652px;
-            min-width: 652px
+            width: 768px;
+            min-width: 768px
         }
 
-        .main > * {
+        @media (max-width: 768px) {
+            .main {
+                width: 95%;
+                min-width: 95%;
+            }
+        }
+
+        .main>* {
             width: 100%;
         }
 
@@ -45,48 +54,50 @@
         }
     </style>
 </head>
+
 <body>
-<header class="header">
-    <h1>Qoogle</h1>
-</header>
-<main id="js-main" class="main">
-    <div class="gcse-search"></div>
-</main>
-<footer class="footer">
-    <p>Source on <a href="https://github.com/azu/qoogle">GitHub</a>.</p>
-</footer>
-<script>
-    const onSearchReady = () => {
-        return new Promise((resolve) => {
-            const main = document.getElementById("js-main");
-            if (main.childElementCount > 0) {
-                resolve();
-                return;
-            }
-            const observer = new MutationObserver((mutations) => {
-                for (const mutation of mutations) {
-                    if (mutation.type === 'childList') {
-                        observer.disconnect()
-                        resolve();
-                    }
+    <header class="header">
+        <h1>Qoogle</h1>
+    </header>
+    <main id="js-main" class="main">
+        <div class="gcse-search"></div>
+    </main>
+    <footer class="footer">
+        <p>Source on <a href="https://github.com/azu/qoogle">GitHub</a>.</p>
+    </footer>
+    <script>
+        const onSearchReady = () => {
+            return new Promise((resolve) => {
+                const main = document.getElementById("js-main");
+                if (main.childElementCount > 0) {
+                    resolve();
+                    return;
                 }
+                const observer = new MutationObserver((mutations) => {
+                    for (const mutation of mutations) {
+                        if (mutation.type === 'childList') {
+                            observer.disconnect()
+                            resolve();
+                        }
+                    }
+                });
+                observer.observe(main);
             });
-            observer.observe(main);
-        });
-    }
-    (async function () {
-        await onSearchReady();
-        const input = document.getElementsByName("search")[0];
-        const url = new URL(location.href);
-        const form = document.querySelector("form.sc-search-box");
-        if (url.searchParams.has("q")) {
-            input.value = url.searchParams.get("q");
-            if (form) {
-                form.submit();
-            }
         }
-    })();
-</script>
-<script async src="https://cse.google.com/cse.js?cx=001593329906102929035:petu4-wohry"></script>
+        (async function () {
+            await onSearchReady();
+            const input = document.getElementsByName("search")[0];
+            const url = new URL(location.href);
+            const form = document.querySelector("form.sc-search-box");
+            if (url.searchParams.has("q")) {
+                input.value = url.searchParams.get("q");
+                if (form) {
+                    form.submit();
+                }
+            }
+        })();
+    </script>
+    <script async src="https://cse.google.com/cse.js?cx=001593329906102929035:petu4-wohry"></script>
 </body>
+
 </html>
